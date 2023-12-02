@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
 
-import 'package:medica/Controller/med_log_controller.dart';
+import 'package:medica/controller/med_log_controller.dart';
 
 // ignore: must_be_immutable
 class MedDetail extends StatelessWidget {

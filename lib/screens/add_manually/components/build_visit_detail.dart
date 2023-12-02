@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:medica/Controller/user_data_controller.dart';
+import 'package:medica/controller/user_data_controller.dart';
 import 'package:provider/provider.dart';
 
 class VisitDetail extends StatelessWidget {

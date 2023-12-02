@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:medica/Controller/nav_bar_controller.dart';
+import 'package:medica/controller/nav_bar_controller.dart';
 import 'package:medica/screens/todays_meds/todays_meds_screen.dart';
 import 'package:medica/screens/learn_more/learn_more_screen.dart';
 import 'package:flutter_emoji/flutter_emoji.dart';

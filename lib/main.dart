@@ -1,9 +1,9 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:medica/Controller/camera_controller.dart';
-import 'package:medica/Controller/med_log_controller.dart';
-import 'package:medica/Controller/nav_bar_controller.dart';
-import 'package:medica/Controller/user_data_controller.dart';
+import 'package:medica/controller/camera_controller.dart';
+import 'package:medica/controller/med_log_controller.dart';
+import 'package:medica/controller/nav_bar_controller.dart';
+import 'package:medica/controller/user_data_controller.dart';
 import 'package:medica/constants/routes.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         // theme: AppTheme.lightTheme,
         routes: Routes.routes,
-        initialRoute: Routes.splash,
+        initialRoute: Routes.navBar,
       ),
     );
   }
