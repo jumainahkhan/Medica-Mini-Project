@@ -63,7 +63,6 @@ class UserDataController extends ChangeNotifier {
 
   void addPrescription() {
     try {
-      //TODO: Add field for dermatologist
       setDjob("Dermatologist");
       Map<String, dynamic> newPrescription = {
         'clinic': clinic,
@@ -77,7 +76,7 @@ class UserDataController extends ChangeNotifier {
       prescriptions.add(newPrescription);
       notifyListeners();
     } catch (e) {
-      print(e);
+      debugPrint(e.toString());
     }
   }
 

@@ -6,12 +6,17 @@ import 'package:medica/Controller/nav_bar_controller.dart';
 import 'package:medica/Controller/user_data_controller.dart';
 import 'package:medica/constants/routes.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 late List<CameraDescription> cameras;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   cameras = await availableCameras();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -38,7 +43,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         // theme: AppTheme.lightTheme,
         routes: Routes.routes,
-        initialRoute: Routes.navBar,
+        initialRoute: Routes.splash,
       ),
     );
   }
