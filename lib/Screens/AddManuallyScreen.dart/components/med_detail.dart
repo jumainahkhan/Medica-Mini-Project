@@ -1,14 +1,18 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:medica/Controller/med_log_controller.dart';
 import 'package:provider/provider.dart';
+
+import 'package:medica/Controller/med_log_controller.dart';
 
 class MedDetail extends StatelessWidget {
   String? medName;
   bool morning = false;
   bool afternoon = false;
   bool night = false;
+
+ 
   @override
   Widget build(BuildContext context) {
     return Consumer<MedLogController>(
@@ -23,7 +27,7 @@ class MedDetail extends StatelessWidget {
             shrinkWrap: true,
             itemCount: medLogController.medCount,
             itemBuilder: (context, index) {
-              return Container(
+              return SizedBox(
                 key: UniqueKey(),
                 width: double.infinity,
                 child: Padding(
@@ -142,8 +146,8 @@ class MedDetail extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
-        Row(
-          children: const [
+        const Row(
+          children: [
             Text("M"),
             SizedBox(
               width: 40,

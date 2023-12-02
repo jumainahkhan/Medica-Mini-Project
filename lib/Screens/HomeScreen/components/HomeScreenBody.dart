@@ -32,7 +32,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsets.all(2),
+                padding: const EdgeInsets.all(2),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -121,7 +121,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
                                       color: HexColor('#f3d39a'),
                                       size: 40,
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 1,
                                     ),
                                     Text(
@@ -170,7 +170,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Container(
@@ -184,7 +184,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(
+                              const SizedBox(
                                 height: 1,
                               ),
                               Text(
@@ -205,7 +205,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       GestureDetector(
@@ -238,7 +238,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
                                         size: 40,
                                         color: Colors.white,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 1,
                                       ),
                                       Text(
@@ -264,7 +264,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 1,
                                           ),
                                           const Icon(CupertinoIcons.arrow_right,
@@ -280,7 +280,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
                         ),
                       ),
                     ]),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Column(
@@ -336,7 +336,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
                                   style: GoogleFonts.lato(
                                       color: Colors.white, fontSize: 15),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 4,
                                 ),
                                 Center(
@@ -372,7 +372,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Container(
@@ -435,7 +435,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Container(

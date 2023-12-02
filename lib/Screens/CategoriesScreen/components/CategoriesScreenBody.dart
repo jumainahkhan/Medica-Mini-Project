@@ -104,7 +104,7 @@ class _CategoriesScreenBodyState extends State<CategoriesScreenBody> {
                             builder: (context) => const PrescriptionDetails()));
                   },
                   child: SizedBox(
-                    height: 200,
+                    height: 150,
                     width: double.infinity,
                     child: GestureDetector(
                         child: Row(

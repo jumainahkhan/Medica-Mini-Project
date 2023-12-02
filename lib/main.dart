@@ -1,6 +1,9 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:medica/Controller/camera_controller.dart';
+import 'package:medica/Controller/med_log_controller.dart';
 import 'package:medica/Controller/nav_bar_controller.dart';
+import 'package:medica/Controller/user_data_controller.dart';
 import 'package:medica/constants/routes.dart';
 import 'package:provider/provider.dart';
 
@@ -22,6 +25,14 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<NavBarController>(
           create: (_) => NavBarController(),
         ),
+        ChangeNotifierProvider<UserDataController>(
+          create: (_) => UserDataController(),
+        ),
+        ChangeNotifierProvider<MedLogController>(
+          create: (_) => MedLogController(),
+        ),
+        ChangeNotifierProvider<CameraControllerX>(
+            create: (_) => CameraControllerX()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

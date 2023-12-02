@@ -133,7 +133,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
             ),
           ),
           const SizedBox(
-            height: 10,
+            height: 5,
           ),
           ListView.builder(
             padding: const EdgeInsets.all(20),
@@ -143,7 +143,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
                 child: Column(
                   children: [
                     Container(
-                      height: 70,
+                      height: 68,
                       width: 355,
                       decoration: BoxDecoration(
                         color: HexColor('#e5e3f9'),

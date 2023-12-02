@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:medica/Controller/user_data_controller.dart';
-import 'package:medica/Screens/AddManuallyScreen.dart/components/buildMedDetail.dart';
+import 'package:medica/Screens/AddManuallyScreen.dart/components/med_detail.dart';
 import 'package:medica/Screens/AddManuallyScreen.dart/components/buildVisitDetail.dart';
 import 'package:provider/provider.dart';
 
