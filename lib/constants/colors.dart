@@ -15,4 +15,10 @@ class MedicaColors {
   static const Color black = Color(0xff000000);
   //greyDark
   static const Color greyDark = Color(0xff4d4d4d);
+  //#E57373;
+  static const Color red = Color.fromRGBO(229, 115, 115, 1);
+  //#EBEBEB
+  static const Color greyLight = Color.fromRGBO(235, 235, 235, 1);
+  // #B71C1C
+  static const Color errorRed = Color(0xFFB71C1C);
 }

@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:medica/constants/colors.dart';
 
 import 'dart:math';
 
@@ -78,13 +80,17 @@ class _PrescriptionScreenBodyState extends State<PrescriptionScreenBody> {
       child: Scaffold(
         backgroundColor: HexColor('#f0f2f0'),
         appBar: AppBar(
-          title: Text(
-            'Prescriptions',
-            style: GoogleFonts.poppins(
-              color: HexColor('#6d69f0'),
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
-            ),
+          title: Row(
+            children: [
+              Text(
+                'Prescriptions',
+                style: GoogleFonts.poppins(
+                  color: HexColor('#6d69f0'),
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
           ),
           backgroundColor: HexColor('#f0f2f0'),
           shadowColor: HexColor('#f0f2f0'),
@@ -112,9 +118,9 @@ class _PrescriptionScreenBodyState extends State<PrescriptionScreenBody> {
                       children: [
                         Container(
                           width: 30,
-                          decoration: BoxDecoration(
-                            color: colors[2]['primary'],
-                            borderRadius: const BorderRadius.only(
+                          decoration: const BoxDecoration(
+                            color: MedicaColors.yellow,
+                            borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(8),
                               bottomLeft: Radius.circular(8),
                             ),
@@ -122,9 +128,9 @@ class _PrescriptionScreenBodyState extends State<PrescriptionScreenBody> {
                         ),
                         Expanded(
                           child: Container(
-                            decoration: BoxDecoration(
-                              color: colors[2]['secondary'],
-                              borderRadius: const BorderRadius.only(
+                            decoration: const BoxDecoration(
+                              color: MedicaColors.white,
+                              borderRadius: BorderRadius.only(
                                 topRight: Radius.circular(8),
                                 bottomRight: Radius.circular(8),
                               ),

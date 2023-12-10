@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:medica/controller/auth_controller.dart';
 import 'package:medica/controller/nav_bar_controller.dart';
 import 'package:medica/screens/todays_meds/todays_meds_screen.dart';
 import 'package:medica/screens/learn_more/learn_more_screen.dart';
@@ -19,6 +20,14 @@ class HomeScreenBody extends StatefulWidget {
 class _HomeScreenBodyState extends State<HomeScreenBody> {
   var parser = EmojiParser();
   var doctor = ('doctor' '👨‍⚕️');
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<AuthController>(context, listen: false)
+          .getUserDocumentStream();
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

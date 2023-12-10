@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:medica/controller/auth_controller.dart';
 import 'package:medica/controller/camera_controller.dart';
 import 'package:medica/controller/med_log_controller.dart';
 import 'package:medica/controller/nav_bar_controller.dart';
@@ -27,6 +28,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider<AuthController>(
+          create: (_) => AuthController(),
+        ),
         ChangeNotifierProvider<NavBarController>(
           create: (_) => NavBarController(),
         ),
@@ -39,12 +43,13 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<CameraControllerX>(
             create: (_) => CameraControllerX()),
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        // theme: AppTheme.lightTheme,
-        routes: Routes.routes,
-        initialRoute: Routes.navBar,
-      ),
+      child:
+          Consumer<AuthController>(builder: (context, authController, child) {
+        return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            routes: Routes.routes,
+            initialRoute: Routes.splash);
+      }),
     );
   }
 }
