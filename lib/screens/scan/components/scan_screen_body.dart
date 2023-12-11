@@ -2,6 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:medica/constants/routes.dart';
 import 'package:medica/screens/add_manually/add_manually_screen.dart';
 import 'package:medica/main.dart';
 
@@ -113,6 +114,8 @@ class _ScanScreenBodyState extends State<ScanScreenBody> {
                   });
                   if (file != null) {
                     showInSnackBar('Picture saved to ${file.path}');
+                    Navigator.pushNamed(context, Routes.addManually,
+                        arguments: file.path);
                   }
                 }
               });

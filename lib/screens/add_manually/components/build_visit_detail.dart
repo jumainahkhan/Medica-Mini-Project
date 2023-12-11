@@ -152,6 +152,38 @@ class VisitDetail extends StatelessWidget {
                                 return null;
                               },
                               onChanged: (value) {
+                                userDataController.setDjob(value);
+                              },
+                              decoration: InputDecoration(
+                                hintText: 'Speciality of the doctor',
+                                hintStyle: GoogleFonts.lato(
+                                    fontSize: 18, fontWeight: FontWeight.w500),
+                                border: InputBorder.none,
+                                icon: Icon(Icons.work,
+                                    color: HexColor('#6d69f0')),
+                              )))
+                    ],
+                  ),
+                  const Divider(
+                    color: Colors.black38,
+                    height: 2,
+                    thickness: 1,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                          child: TextFormField(
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Please enter some text';
+                                }
+                                return null;
+                              },
+                              onChanged: (value) {
                                 userDataController.setReasonforvisit(value);
                               },
                               decoration: InputDecoration(

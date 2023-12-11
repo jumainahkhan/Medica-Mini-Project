@@ -34,31 +34,15 @@ class _AddManuallyScreenBodyState extends State<AddManuallyScreenBody> {
           ),
           GestureDetector(
             onTap: () {
-              // Map<String, dynamic> prescription = {
-              //   'clinic': 'Saif Clinic',
-              //   'dname': 'Dr. Saif',
-              //   'djob': 'Dermatologist',
-              //   'date': '12/12/2020',
-              //   'reasonforvisit': 'Skin Rash ',
-              //   'medicines': [
-              //     {
-              //       'name': 'Medicine1',
-              //       'morning': 'yes',
-              //       'afternoon': 'no',
-              //       'night': 'yes'
-              //     }
-              //   ],
-              // };
-              // userDataController.addPrescription(prescription);
-              // Navigator.pop(context);
-              if (formKey.currentState!.validate()) {
-                // If the form is valid, display a snackbar. In the real world,
-                // you'd often call a server or save the information in a database.
-                userDataController.addPrescription();
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Processing Data')),
-                );
-              }
+              userDataController.printAll();
+              // if (formKey.currentState!.validate()) {
+              // If the form is valid, display a snackbar. In the real world,
+              // you'd often call a server or save the information in a database.
+              userDataController.addPrescription();
+              // ScaffoldMessenger.of(context).showSnackBar(
+              //   const SnackBar(content: Text('Processing Data')),
+              // );
+              // }
             },
             child: Container(
                 color: HexColor('#6d69f0'),
@@ -100,15 +84,6 @@ class _AddManuallyScreenBodyState extends State<AddManuallyScreenBody> {
             },
             icon: HeroIcon(
               HeroIcons.arrowLeft,
-              color: HexColor('#6d69f0'),
-            ),
-          ),
-          IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(
-              CupertinoIcons.ellipsis_vertical,
               color: HexColor('#6d69f0'),
             ),
           ),

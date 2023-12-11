@@ -2,23 +2,27 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:medica/controller/user_data_controller.dart';
+import 'package:medica/model/medicine_model.dart';
 import 'package:provider/provider.dart';
 
 import 'package:medica/controller/med_log_controller.dart';
 
 // ignore: must_be_immutable
-class MedDetail extends StatelessWidget {
+class MedDetail extends StatefulWidget {
   final String? medName;
-  bool morning = false;
-  bool afternoon = false;
-  bool night = false;
 
   MedDetail({super.key, this.medName});
 
   @override
+  State<MedDetail> createState() => _MedDetailState();
+}
+
+class _MedDetailState extends State<MedDetail> {
+  @override
   Widget build(BuildContext context) {
-    return Consumer<MedLogController>(
-        builder: (context, medLogController, child) {
+    return Consumer<UserDataController>(
+        builder: (context, userDataController, child) {
       return Column(
         children: [
           header(),
@@ -27,10 +31,13 @@ class MedDetail extends StatelessWidget {
           ),
           ListView.builder(
             shrinkWrap: true,
-            itemCount: medLogController.medCount,
+            itemCount: userDataController.medicineList.length,
             itemBuilder: (context, index) {
+              bool? morning = userDataController.medicineList[index].morning;
+              bool? afternoon =
+                  userDataController.medicineList[index].afternoon;
+              bool? night = userDataController.medicineList[index].night;
               return SizedBox(
-                key: UniqueKey(),
                 width: double.infinity,
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
@@ -42,14 +49,17 @@ class MedDetail extends StatelessWidget {
                         children: [
                           Expanded(
                               child: TextFormField(
-                            // validator: (value) {
-                            //   if (value == null || value.isEmpty) {
-                            //     return 'Please enter some text';
-                            //   }
-                            //   return null;
-                            // },
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter some text';
+                              }
+                              return null;
+                            },
                             onChanged: (value) {
-                              //  medLogController.setName(value);
+                              userDataController.updateMedicine(
+                                  index,
+                                  userDataController.medicineList[index]
+                                    ..medicineName = value);
                             },
                             decoration: InputDecoration(
                               hintText: 'Medicine Name',
@@ -65,22 +75,28 @@ class MedDetail extends StatelessWidget {
                           Checkbox(
                             value: morning,
                             onChanged: (value) {
-                              morning = value!;
-                              medLogController.setMorning(value);
+                              userDataController.updateMedicine(
+                                  index,
+                                  userDataController.medicineList[index]
+                                    ..morning = value);
                             },
                           ),
                           Checkbox(
                             value: afternoon,
                             onChanged: (value) {
-                              afternoon = value!;
-                              medLogController.setAfternoon(value);
+                              userDataController.updateMedicine(
+                                  index,
+                                  userDataController.medicineList[index]
+                                    ..afternoon = value);
                             },
                           ),
                           Checkbox(
                             value: night,
                             onChanged: (value) {
-                              night = value!;
-                              medLogController.setNight(value);
+                              userDataController.updateMedicine(
+                                  index,
+                                  userDataController.medicineList[index]
+                                    ..night = value);
                             },
                           ),
                         ],
@@ -107,14 +123,19 @@ class MedDetail extends StatelessWidget {
             children: [
               GestureDetector(
                   onTap: () {
-                    medLogController.incrementMedCount();
+                    userDataController.addMedicine(MedicineModel(
+                      medicineName: '',
+                      morning: false,
+                      afternoon: false,
+                      night: false,
+                    ));
                   },
                   child: const Icon(Icons.add)),
               const SizedBox(
                 width: 10,
               ),
               Text(
-                medLogController.medCount.toString(),
+                userDataController.medicineList.length.toString(),
                 style: GoogleFonts.lato(
                   fontSize: 20,
                   color: HexColor('#6d69f0'),
@@ -126,7 +147,7 @@ class MedDetail extends StatelessWidget {
               ),
               GestureDetector(
                   onTap: () {
-                    medLogController.decrementMedCount();
+                    userDataController.removeMedicine();
                   },
                   child: const Icon(Icons.remove))
             ],

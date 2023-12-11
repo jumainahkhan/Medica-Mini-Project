@@ -1,77 +1,53 @@
 import 'package:flutter/material.dart';
+import 'package:medica/model/medicine_model.dart';
+import 'package:medica/model/prescription_model.dart';
 
 class UserDataController extends ChangeNotifier {
   String? medicineName;
   bool morning = false;
   bool afternoon = false;
   bool night = false;
-  List<Map<String, dynamic>> prescriptions = [
-    {
-      'clinic': 'XYZ Clinic',
-      'dname': 'Dr. John Smith',
-      'djob': 'Dermatologist',
-      'date': '12/12/2020',
-      'reasonforvisit': 'Skin Rash ',
-      'medicines': [
-        {
-          'name': 'Medicine1',
-          'morning': 'yes',
-          'afternoon': 'no',
-          'night': 'yes'
-        }
-      ],
-    },
-    {
-      'clinic': 'Wellness Clinic',
-      'dname': 'Dr. Rita Lancaster',
-      'djob': 'Orthopaedic Surgeon',
-      'date': '12/12/2020',
-      'reasonforvisit': 'Fracture',
-      'medicines': [
-        {
-          'name': 'Medicine2',
-          'morning': 'yes',
-          'afternoon': 'no',
-          'night': 'yes'
-        }
-      ],
-    },
-    {
-      'clinic': 'Medsy Clinic',
-      'dname': 'Dr. Piya Mitra',
-      'djob': 'Gynaecologist',
-      'date': '12/12/2020',
-      'reasonforvisit': 'Ultrasound',
-      'medicines': [
-        {
-          'name': 'Medicine3',
-          'morning': 'yes',
-          'afternoon': 'no',
-          'night': 'no'
-        }
-      ],
-    },
-    {
-      'clinic': 'Medal Clinic',
-      'dname': 'Dr. Sanjay Malhotra',
-      'djob': 'Physician',
-      'date': '12/12/2020',
-      'reasonforvisit': 'Fever ',
-      'medicines': []
-    },
+  List<MedicineModel> _medicineList = [
+    MedicineModel(
+      medicineName: '',
+      morning: false,
+      afternoon: false,
+      night: false,
+    )
   ];
+  List<MedicineModel> get medicineList => _medicineList;
+  void setMedicineList(List<MedicineModel> medicineList) {
+    _medicineList = medicineList;
+    notifyListeners();
+  }
+
+  void updateMedicine(int index, MedicineModel medicineModel) {
+    _medicineList[index] = medicineModel;
+    notifyListeners();
+  }
+
+  void addMedicine(MedicineModel medicineModel) {
+    _medicineList.add(medicineModel);
+    notifyListeners();
+  }
+
+  void removeMedicine() {
+    _medicineList.removeLast();
+    notifyListeners();
+  }
+
+  List<PrescriptionModel> prescriptions = [];
 
   void addPrescription() {
     try {
-      setDjob("Dermatologist");
-      Map<String, dynamic> newPrescription = {
-        'clinic': clinic,
-        'dname': dname,
-        'djob': djob,
-        'date': date,
-        'reasonforvisit': reasonforvisit,
-        'medicines': medicine
-      };
+      PrescriptionModel newPrescription = PrescriptionModel(
+        clinic: clinic,
+        docName: dname,
+        docSpeciality: djob,
+        date: date,
+        reasonForVisit: reasonforvisit,
+        medicines: medicineList,
+      );
       print(newPrescription);
       prescriptions.add(newPrescription);
       notifyListeners();
@@ -115,12 +91,7 @@ class UserDataController extends ChangeNotifier {
     notifyListeners();
   }
 
-  final Map<String, dynamic> _medicine = {};
-  Map<String, dynamic> get medicine => _medicine;
-  void setMedicine(Map<String, dynamic> medicine) {
-    print(medicine);
-    print(medicine.entries);
-    medicine.addEntries(medicine.entries);
-    notifyListeners();
+  void printAll() {
+    print(_medicineList);
   }
 }

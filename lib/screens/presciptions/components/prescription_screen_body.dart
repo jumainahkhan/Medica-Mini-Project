@@ -1,8 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:medica/constants/colors.dart';
+import 'package:medica/model/medicine_model.dart';
+import 'package:medica/model/prescription_model.dart';
 
 import 'dart:math';
 
@@ -37,35 +38,20 @@ class _PrescriptionScreenBodyState extends State<PrescriptionScreenBody> {
       'secondary': HexColor('#fde9d0'),
     }
   ];
-  List<Map<String, dynamic>> prescriptions = [
-    {
-      'clinic': 'Wellness Dermatology',
-      'dname': 'Dr. John Smith',
-      'djob': 'Dermatologist',
-      'date': '11/11/2022',
-      'reasonforvisit': 'Acne treatment ',
-    },
-    {
-      'clinic': 'Health Clinic',
-      'dname': 'Dr. Rita Lancaster',
-      'djob': 'Orthopaedic Surgeon',
-      'date': '12/12/2020',
-      'reasonforvisit': 'Fracture',
-    },
-    {
-      'clinic': 'Medsy Clinic',
-      'dname': 'Dr. Piya Mitra',
-      'djob': 'Gynaecologist',
-      'date': '10/01/2021',
-      'reasonforvisit': 'Ultrasound',
-    },
-    {
-      'clinic': 'Medal Clinic',
-      'dname': 'Dr. Sanjay Malhotra',
-      'djob': 'Physician',
-      'date': '09/12/2022',
-      'reasonforvisit': 'Fever ',
-    },
+  List<PrescriptionModel> prescriptions = [
+    PrescriptionModel(
+        medicines: [
+          MedicineModel(
+              afternoon: true,
+              morning: false,
+              night: false,
+              medicineName: 'hello')
+        ],
+        clinic: 'clinic',
+        docName: 'docName',
+        docSpeciality: 'docSpeciality',
+        date: 'date',
+        reasonForVisit: 'reasonForVisit')
   ];
   int randInt() {
     final random = Random();
@@ -150,7 +136,8 @@ class _PrescriptionScreenBodyState extends State<PrescriptionScreenBody> {
                                               right: 13.0),
                                           child: Text(
                                             prescriptions[index]
-                                                ['reasonforvisit'],
+                                                    .reasonForVisit ??
+                                                "",
                                             overflow: TextOverflow.ellipsis,
                                             style: GoogleFonts.poppins(
                                               fontSize: 25,
@@ -166,7 +153,7 @@ class _PrescriptionScreenBodyState extends State<PrescriptionScreenBody> {
                                     ],
                                   ),
                                   Text(
-                                    prescriptions[index]['date'],
+                                    prescriptions[index].date ?? "",
                                     style: GoogleFonts.poppins(
                                       fontSize: 15,
                                       fontWeight: FontWeight.w500,
@@ -179,7 +166,7 @@ class _PrescriptionScreenBodyState extends State<PrescriptionScreenBody> {
                                       foregroundImage: image.image,
                                     ),
                                     title: Text(
-                                      prescriptions[index]['dname'],
+                                      prescriptions[index].docName ?? "",
                                       style: GoogleFonts.poppins(
                                         fontSize: 15,
                                         fontWeight: FontWeight.w500,
@@ -191,7 +178,8 @@ class _PrescriptionScreenBodyState extends State<PrescriptionScreenBody> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          prescriptions[index]['djob'],
+                                          prescriptions[index].docSpeciality ??
+                                              "",
                                           style: GoogleFonts.poppins(
                                             fontSize: 12,
                                             fontWeight: FontWeight.w500,
@@ -202,7 +190,7 @@ class _PrescriptionScreenBodyState extends State<PrescriptionScreenBody> {
                                           width: 5,
                                         ),
                                         Text(
-                                          prescriptions[index]['clinic'],
+                                          prescriptions[index].clinic ?? "",
                                           style: GoogleFonts.poppins(
                                             fontSize: 12,
                                             fontWeight: FontWeight.w500,
@@ -223,7 +211,7 @@ class _PrescriptionScreenBodyState extends State<PrescriptionScreenBody> {
                 ),
               );
             },
-            itemCount: 4,
+            itemCount: prescriptions.length,
           ),
         ),
       ),
