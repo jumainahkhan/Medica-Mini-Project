@@ -104,9 +104,12 @@ class _SplashScreenState extends State<SplashScreen> {
                 SizedBox(
                   height: h * 0.2,
                 ),
-                Image.asset(
-                  'assets/graphics/medica_logo.png',
-                  height: h * 0.07,
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image.asset(
+                    'assets/graphics/medica_logo.png',
+                    height: h * 0.07,
+                  ),
                 ),
                 SizedBox(
                   height: h * 0.2,

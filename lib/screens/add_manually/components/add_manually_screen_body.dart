@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:medica/constants/routes.dart';
 import 'package:medica/controller/user_data_controller.dart';
 import 'package:medica/screens/add_manually/components/med_detail.dart';
 import 'package:medica/screens/add_manually/components/build_visit_detail.dart';
@@ -20,6 +21,7 @@ class _AddManuallyScreenBodyState extends State<AddManuallyScreenBody> {
 
   @override
   Widget build(BuildContext context) {
+    final image = ModalRoute.of(context)!.settings.arguments as String;
     return Consumer<UserDataController>(
         builder: (context, userDataController, child) {
       return Column(
@@ -38,7 +40,8 @@ class _AddManuallyScreenBodyState extends State<AddManuallyScreenBody> {
               // if (formKey.currentState!.validate()) {
               // If the form is valid, display a snackbar. In the real world,
               // you'd often call a server or save the information in a database.
-              userDataController.addPrescription();
+              userDataController.addPrescription(image);
+              Navigator.pop(context);
               // ScaffoldMessenger.of(context).showSnackBar(
               //   const SnackBar(content: Text('Processing Data')),
               // );

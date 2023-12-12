@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:medica/model/prescription_model.dart';
 import 'package:medica/model/user_model.dart';
 
 class UserHelper {
@@ -130,5 +131,76 @@ class UserHelper {
   void closeUserDocumentStream() {
     debugPrint('user_helper:closeUserDocumentStream called');
     getUserDocumentStream().cancel();
+  }
+
+  // add user Prescription
+  Future<void> addPrescription(PrescriptionModel prescription) async {
+    debugPrint("addPrescription");
+    try {
+      DocumentReference doc = userCollection
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .collection('prescriptions')
+          .doc();
+
+      prescription.prescriptionId = doc.id;
+
+      await doc.set(
+        prescription.toJson(),
+      );
+    } catch (e) {
+      debugPrint('Error adding Prescription: $e');
+    }
+  }
+
+  // listentoPrescriptions - returns a stream of Prescriptions
+  Stream<List<PrescriptionModel>> listenToPrescriptions() {
+    debugPrint('user_helper:listenToPrescriptions called');
+    try {
+      return FirebaseFirestore.instance
+          .collection('users')
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .collection('prescriptions')
+          .orderBy('date', descending: true)
+          .snapshots()
+          .map((event) {
+        debugPrint('listenToPrescriptions: $event');
+        if (event.docs.isNotEmpty) {
+          final List<PrescriptionModel> prescriptions =
+              event.docs.map((QueryDocumentSnapshot queryDocumentSnapshot) {
+            return PrescriptionModel.fromJson(
+                queryDocumentSnapshot.data() as Map<String, dynamic>);
+          }).toList();
+          debugPrint('listenToPrescriptions: $prescriptions');
+          return prescriptions;
+        } else {
+          debugPrint('listenToPrescriptions: No Prescriptions found');
+          return [];
+        }
+      });
+    } catch (e) {
+      debugPrint('Error listening to Prescriptions: $e');
+      return const Stream.empty();
+    }
+  }
+
+  // Get all the Prescriptions from Prescriptions collection for the current user
+  Future<List<PrescriptionModel>> getPrescriptions() async {
+    try {
+      final QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .collection('prescriptions')
+          .orderBy('date', descending: true)
+          .get();
+      final List<PrescriptionModel> prescriptions =
+          querySnapshot.docs.map((QueryDocumentSnapshot queryDocumentSnapshot) {
+        return PrescriptionModel.fromJson(
+            queryDocumentSnapshot.data() as Map<String, dynamic>);
+      }).toList();
+      return prescriptions;
+    } catch (e) {
+      debugPrint('Error getting all Prescriptions: $e');
+      return [];
+    }
   }
 }
